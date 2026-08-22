@@ -9,7 +9,7 @@
 
 <div class="landing-card">
     <h1>EduQuiz</h1>
-    <p>Online Course &amp; Quiz Management System</p>
+    <p>Online Course and Quiz Management System</p>
 
     <a class="role-link" href="Admin/View/Login.php">Admin<span class="role-sub">Manage users and courses</span></a>
     <a class="role-link" href="Teacher/View/Login.php">Teacher<span class="role-sub">Login</span></a>
