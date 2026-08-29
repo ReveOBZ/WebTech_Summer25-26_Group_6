@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Login - EduQuiz</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <script src="../JavaScript/Validation.js"></script>
 </head>
 <body>
 <header>
@@ -20,13 +21,13 @@
     <div class="card auth">
         <h1>Login</h1>
         <?php if($message!=""){ ?><div class="alert error"><?php echo htmlspecialchars($message); ?></div><?php } ?>
-        <form method="post" action="">
+        <form method="post" action="" onsubmit="return validateLogin()">
             <label>Email</label>
-            <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
+            <input id="loginEmail" type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
             <br><br>
 
             <label>Password</label>
-            <input type="password" name="password" required>
+            <input id="loginPassword" type="password" name="password" required>
             <br><br>
 
             <label style="font-weight:400">

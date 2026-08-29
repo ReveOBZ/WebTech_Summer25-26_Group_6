@@ -8,6 +8,7 @@
     <title>Create Account - EduQuiz</title>
     <link rel="stylesheet" href="../../css/style.css">
     <script src="../JavaScript/CheckUser.js"></script>
+    <script src="../JavaScript/Validation.js"></script>
 </head>
 <body>
 <header>
@@ -21,10 +22,10 @@
     <div class="card auth">
         <h1>Create Account</h1>
         <?php if($message!=""){ ?><div class="alert error"><?php echo htmlspecialchars($message); ?></div><?php } ?>
-        <form method="post" action="" class="form-grid">
+        <form method="post" action="" class="form-grid" onsubmit="return validateRegistration()">
             <div>
                 <label>Full name</label>
-                <input name="name" required>
+                <input id="name" name="name" required>
             </div>
             <div>
                 <label>Username</label>
@@ -33,7 +34,7 @@
             </div>
             <div>
                 <label>Email</label>
-                <input type="email" name="email" required>
+                <input id="email" type="email" name="email" required>
             </div>
             <div>
                 <label>Phone</label>
@@ -53,11 +54,11 @@
             </div>
             <div>
                 <label>Password</label>
-                <input type="password" name="password" required>
+                <input id="password" type="password" name="password" required>
             </div>
             <div>
                 <label>Confirm password</label>
-                <input type="password" name="confirm" required>
+                <input id="confirm" type="password" name="confirm" required>
             </div>
             <div class="full">
                 <button class="btn" type="submit">Register</button>

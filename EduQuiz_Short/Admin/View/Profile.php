@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>My Profile - EduQuiz</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <script src="../JavaScript/Validation.js"></script>
 </head>
 <body>
 <header>
@@ -35,9 +36,9 @@
 
         <div class="card">
             <h2>Edit Profile</h2>
-            <form method="post" action="">
+            <form method="post" action="" onsubmit="return validateProfile()">
                 <input type="hidden" name="mode" value="update">
-                <label>Name</label><input name="name" value="<?php echo htmlspecialchars($user["name"]); ?>" required><br><br>
+                <label>Name</label><input id="profileName" name="name" value="<?php echo htmlspecialchars($user["name"]); ?>" required><br><br>
                 <label>Phone</label><input name="phone" value="<?php echo htmlspecialchars($user["phone"]); ?>"><br><br>
                 <label>Department</label><input name="department" value="<?php echo htmlspecialchars($user["department"]); ?>"><br><br>
                 <button class="btn" type="submit">Save Changes</button>

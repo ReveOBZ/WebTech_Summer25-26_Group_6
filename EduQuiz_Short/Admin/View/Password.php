@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Change Password - EduQuiz</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <script src="../JavaScript/Validation.js"></script>
 </head>
 <body>
 <header>
@@ -23,10 +24,10 @@
         <h1>Change Password</h1>
         <?php if($message!=""){ ?><div class="alert error"><?php echo htmlspecialchars($message); ?></div><?php } ?>
         <?php if($success!=""){ ?><div class="alert success"><?php echo htmlspecialchars($success); ?></div><?php } ?>
-        <form method="post" action="">
-            <label>Current password</label><input type="password" name="old" required><br><br>
-            <label>New password</label><input type="password" name="new" required><br><br>
-            <label>Confirm new password</label><input type="password" name="confirm" required><br><br>
+        <form method="post" action="" onsubmit="return validatePassword()">
+            <label>Current password</label><input id="oldPassword" type="password" name="old" required><br><br>
+            <label>New password</label><input id="newPassword" type="password" name="new" required><br><br>
+            <label>Confirm new password</label><input id="confirmPassword" type="password" name="confirm" required><br><br>
             <button class="btn" type="submit">Change Password</button>
         </form>
     </div>

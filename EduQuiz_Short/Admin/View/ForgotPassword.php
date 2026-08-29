@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Reset Password - EduQuiz</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <script src="../JavaScript/Validation.js"></script>
 </head>
 <body>
 <header>
@@ -17,11 +18,11 @@
     <div class="card auth">
         <h1>Reset Password</h1>
         <?php if($message!=""){ ?><div class="alert error"><?php echo htmlspecialchars($message); ?></div><?php } ?>
-        <form method="post" action="">
-            <label>Email</label><input type="email" name="email" required><br><br>
-            <label>Username</label><input name="username" required><br><br>
-            <label>New password</label><input type="password" name="password" required><br><br>
-            <label>Confirm new password</label><input type="password" name="confirm" required><br><br>
+        <form method="post" action="" onsubmit="return validateForgotPassword()">
+            <label>Email</label><input id="forgotEmail" type="email" name="email" required><br><br>
+            <label>Username</label><input id="forgotUsername" name="username" required><br><br>
+            <label>New password</label><input id="forgotPassword" type="password" name="password" required><br><br>
+            <label>Confirm new password</label><input id="forgotConfirm" type="password" name="confirm" required><br><br>
             <button class="btn" type="submit">Reset Password</button>
         </form>
     </div>
