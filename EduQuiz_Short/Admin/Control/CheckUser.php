@@ -1,5 +1,5 @@
 <?php
-include "../model/DatabaseConnection.php";
+include "../../model/DatabaseConnection.php";
 $username=$_POST["username"] ?? "";
 
 if(!$username)

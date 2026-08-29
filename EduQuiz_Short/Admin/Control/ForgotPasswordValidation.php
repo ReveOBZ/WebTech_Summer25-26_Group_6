@@ -1,6 +1,5 @@
 <?php
-include "../model/DatabaseConnection.php";
-session_start();
+include "../../model/DatabaseConnection.php";
 $message="";
 
 if($_SERVER["REQUEST_METHOD"]=="POST")

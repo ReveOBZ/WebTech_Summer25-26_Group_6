@@ -1,5 +1,5 @@
 <?php
-include "../model/DatabaseConnection.php";
+include "../../model/DatabaseConnection.php";
 session_start();
 
 if(!isset($_SESSION["user_id"]) || $_SESSION["role"]!="instructor")
@@ -19,7 +19,7 @@ $id=(int)$_SESSION["user_id"];
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Instructor Panel - EduQuiz</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <header>
