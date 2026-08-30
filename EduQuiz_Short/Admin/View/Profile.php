@@ -24,39 +24,47 @@
     <?php if($message!=""){ ?><div class="alert error"><?php echo htmlspecialchars($message); ?></div><?php } ?>
     <?php if($success!=""){ ?><div class="alert success"><?php echo htmlspecialchars($success); ?></div><?php } ?>
 
-    <div class="grid">
-        <div class="card">
+    <div class="layout-two">
+        <section class="content-section">
             <h2>Profile Information</h2>
-            <p><b>Name:</b> <?php echo htmlspecialchars($user["name"]); ?></p>
-            <p><b>Username:</b> <?php echo htmlspecialchars($user["username"]); ?></p>
-            <p><b>Email:</b> <?php echo htmlspecialchars($user["email"]); ?></p>
-            <p><b>Role:</b> <?php echo htmlspecialchars(ucfirst($user["role"])); ?></p>
-            <p><b>Joined:</b> <?php echo htmlspecialchars($user["created_at"]); ?></p>
-        </div>
+            <ul class="profile-list">
+                <li><b>Name:</b> <?php echo htmlspecialchars($user["name"]); ?></li>
+                <li><b>Username:</b> <?php echo htmlspecialchars($user["username"]); ?></li>
+                <li><b>Email:</b> <?php echo htmlspecialchars($user["email"]); ?></li>
+                <li><b>Role:</b> <?php echo htmlspecialchars(ucfirst($user["role"])); ?></li>
+                <li><b>Joined:</b> <?php echo htmlspecialchars($user["created_at"]); ?></li>
+            </ul>
+        </section>
 
-        <div class="card">
+        <section class="content-section">
             <h2>Edit Profile</h2>
-            <form method="post" action="" onsubmit="return validateProfile()">
+            <form method="post" action="" class="basic-form form-box" onsubmit="return validateProfile()">
                 <input type="hidden" name="mode" value="update">
-                <label>Name</label><input id="profileName" name="name" value="<?php echo htmlspecialchars($user["name"]); ?>" required><br><br>
-                <label>Phone</label><input name="phone" value="<?php echo htmlspecialchars($user["phone"]); ?>"><br><br>
-                <label>Department</label><input name="department" value="<?php echo htmlspecialchars($user["department"]); ?>"><br><br>
+                <div class="form-group">
+                    <label>Name</label><input id="profileName" name="name" value="<?php echo htmlspecialchars($user["name"]); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label><input name="phone" value="<?php echo htmlspecialchars($user["phone"]); ?>">
+                </div>
+                <div class="form-group">
+                    <label>Department</label><input name="department" value="<?php echo htmlspecialchars($user["department"]); ?>">
+                </div>
                 <button class="btn" type="submit">Save Changes</button>
             </form>
-        </div>
+        </section>
     </div>
 
-    <div class="card">
+    <section class="content-section">
         <h2>Delete Account</h2>
         <p class="muted">This permanently deletes your profile and related data.</p>
-        <form method="post" action="" onsubmit="return confirm('Delete your account permanently?')">
+        <form method="post" action="" class="basic-form form-box" onsubmit="return confirm('Delete your account permanently?')">
             <input type="hidden" name="mode" value="delete">
             <div class="inline">
                 <input type="password" name="password" placeholder="Enter password to confirm" required>
                 <button class="btn danger" type="submit">Delete Account</button>
             </div>
         </form>
-    </div>
+    </section>
 </main>
 </body>
 </html>

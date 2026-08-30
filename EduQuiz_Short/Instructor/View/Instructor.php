@@ -49,19 +49,19 @@ $id=(int)$_SESSION["user_id"];
         $attempts=$connection->query("SELECT COUNT(*) AS total FROM attempts a,quizzes q,courses c WHERE a.quiz_id=q.id AND q.course_id=c.id AND c.instructor_id=$id")->fetch_assoc();
     ?>
         <p class="welcome">Welcome, <b><?php echo htmlspecialchars($_SESSION["name"]); ?></b></p>
-        <div class="grid">
-            <div class="stat">My Courses<b><?php echo $courses["total"]; ?></b></div>
-            <div class="stat">My Quizzes<b><?php echo $quizzes["total"]; ?></b></div>
-            <div class="stat">Quiz Attempts<b><?php echo $attempts["total"]; ?></b></div>
-        </div>
+        <table class="summary-table">
+            <tr><th>My Courses</th><td><?php echo $courses["total"]; ?></td></tr>
+            <tr><th>My Quizzes</th><td><?php echo $quizzes["total"]; ?></td></tr>
+            <tr><th>Quiz Attempts</th><td><?php echo $attempts["total"]; ?></td></tr>
+        </table>
     <?php
     }
     else if($action=="courses")
     {
         $result=$connection->query("SELECT * FROM courses WHERE instructor_id=$id ORDER BY id DESC");
     ?>
-        <div class="grid">
-            <div class="card">
+        <div class="layout-two">
+            <div class="content-section">
                 <h2>Create Course</h2>
                 <form method="post" action="../Control/InstructorControl.php">
                     <input type="hidden" name="mode" value="create_course">
@@ -72,7 +72,7 @@ $id=(int)$_SESSION["user_id"];
                 </form>
             </div>
 
-            <div class="card">
+            <div class="content-section">
                 <h2>My Courses</h2>
                 <div class="table-wrap">
                     <table>
@@ -102,8 +102,8 @@ $id=(int)$_SESSION["user_id"];
         $quizzes=$connection->query("SELECT q.id,q.title,q.is_published,c.code FROM quizzes q,courses c WHERE q.course_id=c.id AND c.instructor_id=$id ORDER BY q.id DESC");
         $quiz_id=(int)($_GET["quiz_id"] ?? 0);
     ?>
-        <div class="grid">
-            <div class="card">
+        <div class="layout-two">
+            <div class="content-section">
                 <h2>Create Quiz</h2>
                 <form method="post" action="../Control/InstructorControl.php">
                     <input type="hidden" name="mode" value="create_quiz">
@@ -118,7 +118,7 @@ $id=(int)$_SESSION["user_id"];
                 </form>
             </div>
 
-            <div class="card">
+            <div class="content-section">
                 <h2>My Quizzes</h2>
                 <div class="table-wrap">
                     <table>
@@ -148,7 +148,7 @@ $id=(int)$_SESSION["user_id"];
         </div>
 
         <?php if($quiz_id!=0){ ?>
-        <div class="card">
+        <div class="content-section">
             <h2>Add Question</h2>
             <form method="post" action="../Control/InstructorControl.php" class="form-grid">
                 <input type="hidden" name="mode" value="add_question">
@@ -170,7 +170,7 @@ $id=(int)$_SESSION["user_id"];
     {
         $result=$connection->query("SELECT u.name AS student,c.code,q.title AS quiz,a.score,a.total,a.attempted_at FROM attempts a,users u,quizzes q,courses c WHERE a.student_id=u.id AND a.quiz_id=q.id AND q.course_id=c.id AND c.instructor_id=$id ORDER BY a.id DESC");
     ?>
-        <div class="card">
+        <div class="content-section">
             <h2>Student Quiz Results</h2>
             <div class="table-wrap">
                 <table>

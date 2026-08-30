@@ -29,5 +29,17 @@ class DatabaseConnection
         $result=$conn->query("SELECT * FROM users WHERE username='".$username."'");
         return $result;
     }
+
+    function CheckEmail($conn,$email)
+    {
+        $result=$conn->query("SELECT * FROM users WHERE email='".$email."'");
+        return $result;
+    }
+
+    function CheckPhone($conn,$phone)
+    {
+        $result=$conn->query("SELECT * FROM users WHERE phone='".$phone."' AND phone!=''");
+        return $result;
+    }
 }
 ?>

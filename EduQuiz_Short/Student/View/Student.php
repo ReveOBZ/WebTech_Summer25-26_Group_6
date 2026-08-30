@@ -50,18 +50,18 @@ $id=(int)$_SESSION["user_id"];
         $avg=$average["average"]==null ? 0 : round($average["average"],1);
     ?>
         <p class="welcome">Welcome, <b><?php echo htmlspecialchars($_SESSION["name"]); ?></b></p>
-        <div class="grid">
-            <div class="stat">Enrolled Courses<b><?php echo $courses["total"]; ?></b></div>
-            <div class="stat">Quiz Attempts<b><?php echo $attempts["total"]; ?></b></div>
-            <div class="stat">Average Score %<b><?php echo $avg; ?></b></div>
-        </div>
+        <table class="summary-table">
+            <tr><th>Enrolled Courses</th><td><?php echo $courses["total"]; ?></td></tr>
+            <tr><th>Quiz Attempts</th><td><?php echo $attempts["total"]; ?></td></tr>
+            <tr><th>Average Score %</th><td><?php echo $avg; ?></td></tr>
+        </table>
     <?php
     }
     else if($action=="courses")
     {
         $courses=$connection->query("SELECT c.id,c.code,c.title,c.description,u.name AS instructor FROM courses c,users u WHERE c.instructor_id=u.id ORDER BY c.id DESC");
     ?>
-        <div class="card">
+        <div class="content-section">
             <h2>Available Courses</h2>
             <div class="table-wrap">
                 <table>
@@ -105,7 +105,7 @@ $id=(int)$_SESSION["user_id"];
                 $quiz=$quiz_result->fetch_assoc();
                 $questions=$connection->query("SELECT * FROM questions WHERE quiz_id=$take ORDER BY id");
     ?>
-                <div class="card">
+                <div class="content-section">
                     <h2><?php echo htmlspecialchars($quiz["title"]); ?></h2>
                     <form method="post" action="../Control/StudentControl.php">
                         <input type="hidden" name="mode" value="submit_quiz">
@@ -133,7 +133,7 @@ $id=(int)$_SESSION["user_id"];
         {
             $quizzes=$connection->query("SELECT q.id,q.title,c.code,c.title AS course_title FROM quizzes q,courses c,enrollments e WHERE q.course_id=c.id AND e.course_id=c.id AND e.student_id=$id AND q.is_published=1 ORDER BY q.id DESC");
     ?>
-            <div class="card">
+            <div class="content-section">
                 <h2>Published Quizzes</h2>
                 <div class="table-wrap">
                     <table>
@@ -159,7 +159,7 @@ $id=(int)$_SESSION["user_id"];
     {
         $result=$connection->query("SELECT a.score,a.total,a.attempted_at,q.title AS quiz,c.code FROM attempts a,quizzes q,courses c WHERE a.quiz_id=q.id AND q.course_id=c.id AND a.student_id=$id ORDER BY a.id DESC");
     ?>
-        <div class="card">
+        <div class="content-section">
             <h2>Quiz Result History</h2>
             <div class="table-wrap">
                 <table>

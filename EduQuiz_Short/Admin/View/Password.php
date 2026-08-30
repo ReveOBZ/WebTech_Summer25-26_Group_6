@@ -20,14 +20,20 @@
     </nav>
 </header>
 <main class="container">
-    <div class="card auth">
+    <div class="auth-area">
         <h1>Change Password</h1>
         <?php if($message!=""){ ?><div class="alert error"><?php echo htmlspecialchars($message); ?></div><?php } ?>
         <?php if($success!=""){ ?><div class="alert success"><?php echo htmlspecialchars($success); ?></div><?php } ?>
-        <form method="post" action="" onsubmit="return validatePassword()">
-            <label>Current password</label><input id="oldPassword" type="password" name="old" required><br><br>
-            <label>New password</label><input id="newPassword" type="password" name="new" required><br><br>
-            <label>Confirm new password</label><input id="confirmPassword" type="password" name="confirm" required><br><br>
+        <form method="post" action="" class="basic-form form-box" onsubmit="return validatePassword()">
+            <div class="form-group">
+                <label>Current password</label><input id="oldPassword" type="password" name="old" required>
+            </div>
+            <div class="form-group">
+                <label>New password</label><input id="newPassword" type="password" name="new" required>
+            </div>
+            <div class="form-group">
+                <label>Confirm new password</label><input id="confirmPassword" type="password" name="confirm" required>
+            </div>
             <button class="btn" type="submit">Change Password</button>
         </form>
     </div>

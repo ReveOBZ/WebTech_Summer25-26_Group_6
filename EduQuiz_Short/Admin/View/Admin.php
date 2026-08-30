@@ -49,18 +49,18 @@ $id=(int)$_SESSION["user_id"];
         $attempts=$connection->query("SELECT COUNT(*) AS total FROM attempts")->fetch_assoc();
     ?>
         <p class="welcome">Welcome, <b><?php echo htmlspecialchars($_SESSION["name"]); ?></b></p>
-        <div class="grid">
-            <div class="stat">Users<b><?php echo $users["total"]; ?></b></div>
-            <div class="stat">Courses<b><?php echo $courses["total"]; ?></b></div>
-            <div class="stat">Quiz Attempts<b><?php echo $attempts["total"]; ?></b></div>
-        </div>
+        <table class="summary-table">
+            <tr><th>Users</th><td><?php echo $users["total"]; ?></td></tr>
+            <tr><th>Courses</th><td><?php echo $courses["total"]; ?></td></tr>
+            <tr><th>Quiz Attempts</th><td><?php echo $attempts["total"]; ?></td></tr>
+        </table>
     <?php
     }
     else if($action=="users")
     {
         $result=$connection->query("SELECT * FROM users ORDER BY id DESC");
     ?>
-        <div class="card">
+        <section class="content-section">
             <h2>All Users</h2>
             <div class="table-wrap">
                 <table>
@@ -89,14 +89,14 @@ $id=(int)$_SESSION["user_id"];
                     <?php } ?>
                 </table>
             </div>
-        </div>
+        </section>
     <?php
     }
     else if($action=="courses")
     {
         $result=$connection->query("SELECT c.id,c.code,c.title,u.name AS instructor FROM courses c,users u WHERE c.instructor_id=u.id ORDER BY c.id DESC");
     ?>
-        <div class="card">
+        <section class="content-section">
             <h2>Course Control</h2>
             <div class="table-wrap">
                 <table>
@@ -121,7 +121,7 @@ $id=(int)$_SESSION["user_id"];
                     <?php } ?>
                 </table>
             </div>
-        </div>
+        </section>
     <?php
     }
     else
@@ -133,15 +133,15 @@ $id=(int)$_SESSION["user_id"];
         $attempts=$connection->query("SELECT COUNT(*) AS total FROM attempts")->fetch_assoc();
         $recent=$connection->query("SELECT u.name,q.title,a.score,a.total,a.attempted_at FROM attempts a,users u,quizzes q WHERE a.student_id=u.id AND a.quiz_id=q.id ORDER BY a.id DESC LIMIT 10");
     ?>
-        <div class="grid">
-            <div class="stat">Total Students<b><?php echo $students["total"]; ?></b></div>
-            <div class="stat">Total Instructors<b><?php echo $instructors["total"]; ?></b></div>
-            <div class="stat">Total Courses<b><?php echo $courses["total"]; ?></b></div>
-            <div class="stat">Total Quizzes<b><?php echo $quizzes["total"]; ?></b></div>
-            <div class="stat">Total Attempts<b><?php echo $attempts["total"]; ?></b></div>
-        </div>
-        <br>
-        <div class="card">
+        <table class="summary-table">
+            <tr><th>Total Students</th><td><?php echo $students["total"]; ?></td></tr>
+            <tr><th>Total Instructors</th><td><?php echo $instructors["total"]; ?></td></tr>
+            <tr><th>Total Courses</th><td><?php echo $courses["total"]; ?></td></tr>
+            <tr><th>Total Quizzes</th><td><?php echo $quizzes["total"]; ?></td></tr>
+            <tr><th>Total Attempts</th><td><?php echo $attempts["total"]; ?></td></tr>
+        </table>
+
+        <section class="content-section">
             <h2>Recent Quiz Attempts</h2>
             <div class="table-wrap">
                 <table>
@@ -156,7 +156,7 @@ $id=(int)$_SESSION["user_id"];
                     <?php } ?>
                 </table>
             </div>
-        </div>
+        </section>
     <?php } ?>
 </main>
 </body>

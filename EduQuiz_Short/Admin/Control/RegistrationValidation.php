@@ -42,11 +42,21 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         $password=$connection->real_escape_string($password);
         $role=$connection->real_escape_string($role);
 
-        $check=$connection->query("SELECT * FROM users WHERE username='$username' OR email='$email'");
+        $checkUsername=$database->CheckUsername($connection,$username);
+        $checkEmail=$database->CheckEmail($connection,$email);
+        $checkPhone=$database->CheckPhone($connection,$phone);
 
-        if($check->num_rows>0)
+        if($checkUsername->num_rows>0)
         {
-            $message="Email or username already exists";
+            $message="Username already exists";
+        }
+        else if($checkEmail->num_rows>0)
+        {
+            $message="Email already exists";
+        }
+        else if($phone!="" && $checkPhone->num_rows>0)
+        {
+            $message="Phone number already exists";
         }
         else
         {

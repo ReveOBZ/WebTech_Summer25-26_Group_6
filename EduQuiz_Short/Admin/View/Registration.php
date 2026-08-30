@@ -19,10 +19,10 @@
     </nav>
 </header>
 <main class="container">
-    <div class="card auth">
+    <div class="auth-area">
         <h1>Create Account</h1>
         <?php if($message!=""){ ?><div class="alert error"><?php echo htmlspecialchars($message); ?></div><?php } ?>
-        <form method="post" action="" class="form-grid" onsubmit="return validateRegistration()">
+        <form method="post" action="" class="basic-form form-box form-grid" onsubmit="return validateRegistration()">
             <div>
                 <label>Full name</label>
                 <input id="name" name="name" required>
@@ -30,15 +30,17 @@
             <div>
                 <label>Username</label>
                 <input id="username" name="username" onkeyup="CheckUser()" required>
-                <span id="userresponse" class="muted"></span>
+                <span id="userresponse" class="check-response"></span>
             </div>
             <div>
                 <label>Email</label>
-                <input id="email" type="email" name="email" required>
+                <input id="email" type="email" name="email" onkeyup="CheckEmail()" required>
+                <span id="emailresponse" class="check-response"></span>
             </div>
             <div>
                 <label>Phone</label>
-                <input name="phone">
+                <input id="phone" name="phone" onkeyup="CheckPhone()">
+                <span id="phoneresponse" class="check-response"></span>
             </div>
             <div>
                 <label>Department</label>
